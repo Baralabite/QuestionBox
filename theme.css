@@ -1,0 +1,25 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+body {
+	background-color: #333333;
+}
+
+h1{
+	text-align: center;
+	color: #707070;
+	font-family: Roboto;
+}
+
+.wrapper{
+	text-align: center;
+	vertical-align: center;
+}
+
+#questionBox{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	resize: none;
+	font-family: Roboto;
+}
