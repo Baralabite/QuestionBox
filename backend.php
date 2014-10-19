@@ -27,7 +27,7 @@
 	/* Reads in question from GET/POST and writes it to the questions file. */
 	function writeQuestion(){
 		global $file;
-		$question = $_GET["question"];
+		$question = $_POST["question"];
 		fwrite($file, $question."\n\n\n");
 	}
 	
@@ -46,7 +46,7 @@
 	
 	/* Reads the required operation from GET and executes. */
 	function handleCommand(){
-		$command = $_GET["command"];
+		$command = $_POST["command"];
 		
 		if($command=="submit"){				//If the command is submit, then write the question to the file.		
 			writeQuestion();
@@ -65,7 +65,7 @@
 	function main(){
 		openFile();
 		
-		if(array_key_exists("command", $_GET)){	
+		if(array_key_exists("command", $_POST)){	
 			$error = handleCommand();
 			
 			if(!$error){
