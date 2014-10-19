@@ -13,7 +13,7 @@
 	*/
 	
 	/* Constants */
-	define("FILENAME", "questions.txt");
+	define("FILENAME", "questions.html");
 	
 	/* Global variables */
 	$file = null;	
@@ -28,7 +28,7 @@
 	function writeQuestion(){
 		global $file;
 		$question = $_POST["question"];
-		fwrite($file, $question."\n\n\n");
+		fwrite($file, $question."<br><br><br>\n\n\n");
 	}
 	
 	/* Closes the file, and saves it(?) */

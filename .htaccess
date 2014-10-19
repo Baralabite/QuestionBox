@@ -1,4 +1,4 @@
-<Files questions.txt>
+<Files questions.html>
 	AuthUserFile C:\xampp\htdocs\.htpasswd
 	AuthType Basic
 	AuthName "Login Required"
