@@ -1,1 +1,1 @@
-echo "Questions for this week" | mail -s Questions -a questions.html johnrobboard@gmail.com
+echo "Questions for this week" | mail -s Questions -a questions.txt johnrobboard@gmail.com

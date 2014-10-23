@@ -13,7 +13,7 @@
 	*/
 	
 	/* Constants */
-	define("FILENAME", "questions.html");
+	define("FILENAME", "questions.txt");
 	
 	/* Global variables */
 	$file = null;	
