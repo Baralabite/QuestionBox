@@ -24,20 +24,89 @@
 	<body>
 	
 		<div class="wrapper">
-			<form name="input" action="backend.php" method="post">				
-				<input type="hidden" name="command" value="submit" />
-				<textarea id="question" name="question" 
-rows=10 cols=50></textarea><br><br>
-				<input id="submitButton" type="submit" value="Submit" />				
-			</form>
+							
+				
+			<textarea id="question" name="question" rows=10 cols=50></textarea><br><br>
+			<input id="submitButton" type="submit" value="Submit" />				
+			
 			
 			<!-- <button id="clearButton">Clear</button> -->
-		</div>		
+		</div>	
+
+		<div id="dialog-submitting" title="Submitting Question">
+		  <p id="dialog-text">
+			Submitting your question...
+		  </p>
+		  <div id="progressbar"></div>
+		</div>	
+
+		<div id="dialog-finished" title="Submitted!">
+		  <p id="dialog-text">
+			Your question has been submitted successfully!
+		  </p>
+		</div>			
 
 	
 		<script>
+			if (typeof String.prototype.startsWith != 'function') {
+				String.prototype.startsWith = function (str){
+					return this.indexOf(str) == 0;
+				};
+			}
+
 			var submitButton = $("#submitButton").button();	
+			submitButton.click(onSubmitClick);
+			
 			$("#question").Watermark("Enter the question you have here");		
+			
+			$( "#progressbar" ).progressbar({
+				value: false
+			});
+			
+			$( "#dialog-submitting" ).dialog({
+				modal: true,
+				autoOpen: false
+			});			
+			
+			$( "#dialog-finished" ).dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						location.reload();
+					}
+				},
+				autoOpen: false
+			});	
+			  
+			function onSubmitClick(){
+				var question = document.getElementById("question").value;
+				if(!question.startsWith("Enter the question you have here")){
+					submitToBackend();
+					$( "#dialog-submitting" ).dialog("open");
+				}
+			}			
+			
+			function submitToBackend(question){
+				var data = {"command": "submit", "question": question};
+				data = $(this).serialize() + "&" + $.param(data);
+				console.log(data);
+				
+				$.ajax({
+				  type: "POST",
+				  dataType: "text",
+				  url: "backend.php", //Relative or absolute path to response.php file
+				  data: data,
+				  success: function onResultReturned(data){
+								console.log(data);
+								$( "#dialog-submitting" ).dialog("close");
+								$( "#dialog-finished" ).dialog("open");
+							}
+				});
+			}
+			
+			
+			
+			
 		</script>
 	
 	</body>
