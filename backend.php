@@ -13,7 +13,7 @@
 	*/
 	
 	/* Constants */
-	define("FILENAME", "questions.html");
+	define("FILENAME", "questions.txt");
 	
 	/* Global variables */
 	$file = null;	
@@ -28,7 +28,7 @@
 	function writeQuestion(){
 		global $file;
 		$question = $_POST["question"];
-		fwrite($file, $question."<br><br><br>\n\n\n");
+		fwrite($file, $question."\n\n\n");
 	}
 	
 	/* Closes the file, and saves it(?) */
@@ -50,12 +50,7 @@
 		
 		if($command=="submit"){				//If the command is submit, then write the question to the file.		
 			writeQuestion();
-			return true;
-			
-		} elseif ($command=="clear"){		//If the command is clear, then clear the questions file.
-			clearFile();
-			return true;
-			
+			return true;			
 		} else {
 			return false;
 		}
